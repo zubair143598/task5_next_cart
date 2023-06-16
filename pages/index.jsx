@@ -8,7 +8,7 @@ export default function Home() {
   return (
     <>
       <Head>
-        <title>Boilerplate</title>
+        <title>  Next Cart - products</title>
       </Head>
 
       <main  className="bg-black">

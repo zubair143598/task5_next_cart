@@ -15,11 +15,17 @@ import {
 import axios from "axios";
 import React, { useState } from "react";
 import { BsCartPlus } from "react-icons/bs";
+import Pagination2 from "./Pagination2";
+import { useRouter } from "next/router";
+import { AiOutlineShoppingCart } from "react-icons/ai";
+import { AiOutlineRollback } from "react-icons/ai";
 
 const Pagination = () => {
   const [currentPage, setCurrentPage] = useState(1);
   const [postsPerPage, setPostsPerPage] = useState(10);
   const [productsData, setProductsData] = useState([]);
+
+  const router = useRouter();
 
   const fetchProducts = async () => {
     try {
@@ -49,14 +55,37 @@ const Pagination = () => {
 
   if (data) {
     return (
-      <div className="px-[10rem]">
-        <div className="grid    grid-cols-4">
-          {data.products.map((product) => (
+      <div className="px-[10rem] pt-5  ">
+        <div className="bg-[#7D0B28] rounded-lg  flex justify-between  px-4 ">
+          <div className="flex ">
+            <img className="w-[40px] h-[40px] mt-2 " src="/assets/logo.webp" alt="" />
+            <p className="text-white text-[40px] font-[700] ">NC</p>
+          </div>
+          <div className="asdf flex rounded flex-row items-center my-2 px-3">
+            <button className="flex text-white font-[600]  ">
+            
+              <AiOutlineShoppingCart className="mt-1  mr-2" /> Cart
+            </button>
+          </div>
+        </div>
+        <div className=" mt-24 text-white" >
+         
+          <button className="flex" >
+            
+            <AiOutlineRollback className="mt-1 mr-3" /> Home
+          </button>
+        </div>
+        <div className="text-white font-[600] mt-[20px] mb-[30px] text-center uppercase text-[40px] sm:text-[30px]" >
+          <h2>Available <span className="text-[#da0037]" >Items</span></h2>
+        </div>
+        <div className="grid  md:grid-cols-2 lg:grid-cols-4 sm:grid-cols-1  grid-cols-4">
+
+          {currentPost.map((product) => (
             <div
               key={product.id}
-              className="flex   mx-2 items-center flex-col py-3"
+              className="flex   mx-4  items-center flex-col py-5"
             >
-              <Card maxW="sm">
+              <Card className="h-[100%]" maxW="sm">
                 <CardBody className="rounded-t bg-[#444]">
                   {product.images.length > 0 && (
                     <img
@@ -66,7 +95,12 @@ const Pagination = () => {
                       alt={product.images[0]}
                     />
                   )}
-                  <Stack className="p-[1rem] text-white" mt="6" spacing="3">
+                  <Stack
+                    onClick={() => router.push(`/${product.id}`)}
+                    className="p-[1rem] text-white"
+                    mt="6"
+                    spacing="3"
+                  >
                     <Heading size="lg">{product.title} </Heading>
                     <Text>
                       <p>
@@ -92,15 +126,15 @@ const Pagination = () => {
               </Card>
             </div>
           ))}
-
         </div>
-        <div className="py-10">
-
-        <Flex className="flex justify-between">
-            <button className="bg-red-700 px-4 py-2 mx-3 rounded-xl" >prev</button>
-            <button className="bg-green-700 px-4 py-2 mx-3 rounded-xl" >Next</button>
-        </Flex>
-          </div>
+        <div className="py-10 flex justify-center mt-6 text-white">
+          <Pagination2
+            totalPosts={productsData.length}
+            postsPerPage={postsPerPage}
+            currentPage={currentPage}
+            setCurrentPage={setCurrentPage}
+          />
+        </div>
       </div>
     );
   }
