@@ -97,7 +97,7 @@ const Pagination = () => {
                   )}
                   <Stack
                     onClick={() => router.push(`/${product.id}`)}
-                    className="p-[1rem] text-white"
+                    className="p-[1rem] cursor-pointer text-white"
                     mt="6"
                     spacing="3"
                   >
