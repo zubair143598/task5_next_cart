@@ -24,7 +24,7 @@ const Pagination2 = ({totalPosts, postsPerPage,currentPage,setCurrentPage}) => {
         pages.map((page,index)=>{
             return (
                 <div key={index}>
-                    <button onClick={()=>setCurrentPage(page)} className="mx-4" key={index}>{page}</button>
+                    <button onClick={()=>setCurrentPage(page)} className="mx-4 mt-2" key={index}>{page}</button>
                 </div>
             )
         })

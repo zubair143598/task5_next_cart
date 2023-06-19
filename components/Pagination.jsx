@@ -31,6 +31,7 @@ const Pagination = () => {
     try {
       const { data } = await axios.get("https://dummyjson.com/products");
       setProductsData(data.products);
+      console.log(data)
       return data;
     } catch (error) {
       throw Error("unable to get data");
@@ -55,13 +56,13 @@ const Pagination = () => {
 
   if (data) {
     return (
-      <div className="px-[10rem] pt-5  ">
+      <div className=" sm:px-[2rem] md:px-[2rem] lg:px-[3rem]  xl:px-[10rem] bg-[#171717] pt-5   ">
         <div className="bg-[#7D0B28] rounded-lg  flex justify-between  px-4 ">
           <div className="flex ">
             <img className="w-[40px] h-[40px] mt-2 " src="/assets/logo.webp" alt="" />
             <p className="text-white text-[40px] font-[700] ">NC</p>
           </div>
-          <div className="asdf flex rounded flex-row items-center my-2 px-3">
+          <div className="cart flex rounded flex-row items-center my-2 px-3">
             <button className="flex text-white font-[600]  ">
             
               <AiOutlineShoppingCart className="mt-1  mr-2" /> Cart
@@ -78,7 +79,7 @@ const Pagination = () => {
         <div className="text-white font-[600] mt-[20px] mb-[30px] text-center uppercase text-[40px] sm:text-[30px]" >
           <h2>Available <span className="text-[#da0037]" >Items</span></h2>
         </div>
-        <div className="grid  md:grid-cols-2 lg:grid-cols-4 sm:grid-cols-1  grid-cols-4">
+        <div className="grid  md:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 sm:grid-cols-1  grid-cols-4">
 
           {currentPost.map((product) => (
             <div

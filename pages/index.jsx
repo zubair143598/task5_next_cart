@@ -1,3 +1,4 @@
+import Footer from "@/components/Footer";
 import NextChart from "@/components/NextChart";
 import Pagination from "@/components/Pagination";
 
@@ -14,7 +15,9 @@ export default function Home() {
       <main  className="bg-black">
         
         {/* <NextChart /> */}
+
         <Pagination/>
+        <Footer/>
       </main>
     </>
   );
