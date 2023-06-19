@@ -20,11 +20,11 @@ body {
   width: 8px;
 }
 ::-webkit-scrollbar-thumb {
-  background-color: black;
+  background-color: #7D0B28;
   border-radius: 50px;
 }
 ::-webkit-scrollbar-track {
-  background-color: silver;
+  background-color: rgb(128, 126, 126);
 }
 
 // **************************** components
@@ -70,6 +70,26 @@ body {
 .thumb
 {
   height: 70px;
-  
+
+}
+
+//Drawer 
+.chakra-slide
+{
+  background-color: #444 !important;
+}
+.chakra-modal__close-btn{
+  color: white;
+}
+.chakra-modal__footer
+{
+  justify-content: space-between !important;
+}
+
+
+//scroll
+.scroll{
+  background-color: #da0037 !important;
+  border-radius: 20px !important;
 }
 // **************************** overrides
