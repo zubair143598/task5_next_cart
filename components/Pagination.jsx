@@ -21,6 +21,8 @@ import Navbar from "./NavBar";
 import ScrollToTop from "react-scroll-to-top";
 import { ToastContainer, toast } from "react-toastify";
 import "react-toastify/dist/ReactToastify.css";
+import { useDispatch } from "react-redux";
+import { ADD } from "@/src/redux/actions/action";
 
 const Pagination = () => {
   const [currentPage, setCurrentPage] = useState(1);
@@ -43,18 +45,14 @@ const Pagination = () => {
       throw Error("unable to get data");
     }
   };
+  const dispatch =useDispatch()
   const addToCart = (product) => {
     setSelectedProducts([...selectedProducts, product]);
+    console.log(product)
+    dispatch(ADD(product))
     toast("Item added to cart")
   };
-  const removeFromCart = (productId) => {
-    const updatedProducts = selectedProducts.filter(
-      (product) => product.id !== productId
-    );
-    setSelectedProducts(updatedProducts);
-    toast("Item removed from cart");
-  };
-
+ 
   const lastPostIndex = currentPage * postsPerPage;
   const firstPostIndex = lastPostIndex - postsPerPage;
 
@@ -62,6 +60,7 @@ const Pagination = () => {
 
   const { data, isLoading, error } = useQuery("products", fetchProducts);
   console.log(data);
+  
 
   if (isLoading) {
     return <div>Loading...</div>;
@@ -76,8 +75,8 @@ const Pagination = () => {
       <>
         <div className=" sm:px-[2rem] md:px-[2rem] lg:px-[3rem]  xl:px-[10rem] bg-[#171717] pt-5   ">
           <Navbar
-            selectedProducts={selectedProducts}
-            removeFromCart={removeFromCart}
+            
+            
           />
           <div className=" mt-24 text-white">
             <button className="flex">
@@ -150,8 +149,8 @@ const Pagination = () => {
             />
           </div>
         </div>
-        <ToastContainer/>
-        <ScrollToTop color="white"  className=" scroll px-2  pl-1 " smooth />
+        <ToastContainer position="bottom-right"/>
+        <ScrollToTop  color="white"  className=" scroll px-2  pl-1 " smooth />
       </>
     );
   }

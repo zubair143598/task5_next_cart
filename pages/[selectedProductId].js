@@ -18,6 +18,8 @@ import Navbar from "@/components/NavBar";
 import { ToastContainer, toast } from "react-toastify";
 import "react-toastify/dist/ReactToastify.css";
 import "react-responsive-carousel/lib/styles/carousel.min.css";
+import { useDispatch } from "react-redux";
+import { ADD } from "@/src/redux/actions/action";
 
 const DynamicProductPage = () => {
   const router = useRouter();
@@ -27,6 +29,7 @@ const DynamicProductPage = () => {
   const [selectedProducts, setSelectedProducts] = useState([]);
 
   const btnRef = useRef();
+  const dispatch = useDispatch();
   useEffect(() => {
     const fetchProduct = async () => {
       try {
@@ -38,6 +41,7 @@ const DynamicProductPage = () => {
         console.error("Error fetching product:", error);
       }
     };
+   
 
     if (selectedProductId) {
       fetchProduct();
@@ -50,10 +54,12 @@ const DynamicProductPage = () => {
 
   const { title, price, images, description, category, brand, stock, rating } =
     product;
-  const addToCart = (product) => {
+    function addToCart(product) {
     setSelectedProducts([...selectedProducts, product]);
-    toast("Item added to cart")
-  };
+    console.log(product);
+    dispatch(ADD(product));
+    toast("Item added to cart");
+  }
 
   const removeFromCart = (productId) => {
     const updatedProducts = selectedProducts.filter(
@@ -155,7 +161,7 @@ const DynamicProductPage = () => {
       </div>
       <Footer />
       <ScrollToTop color="white"  className=" scroll px-2  pl-1 " smooth />
-      <ToastContainer/>
+      <ToastContainer position="bottom-right"/>
 
     </div>
   );
