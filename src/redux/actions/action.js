@@ -4,9 +4,9 @@ export const ADD =(item)=>{
         payload:item
     }
 }
-export const removeFromCart = (productId) => {
-    return {
-      type: 'REMOVE_FROM_CART',
-      payload: productId,
-    };
+export const REMOVE = (productId) => {
+  return {
+    type: "REMOVE_CART",
+    payload: productId,
   };
+};

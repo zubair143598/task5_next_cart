@@ -13,7 +13,7 @@ import {
   useDisclosure,
 } from "@chakra-ui/react";
 import { AiOutlineShoppingCart, AiOutlineDelete } from "react-icons/ai";
-import { removeFromCart } from "@/src/redux/actions/action";
+import { REMOVE } from "@/src/redux/actions/action";
 import { ToastContainer, toast } from "react-toastify";
 import "react-toastify/dist/ReactToastify.css";
 import { useDispatch, useSelector } from "react-redux";
@@ -27,9 +27,10 @@ const Navbar = () => {
   const dispatch = useDispatch();
 
   const handleRemoveFromCart = (productId) => {
-    dispatch(removeFromCart(productId));
+    dispatch(REMOVE(productId));
     toast("Item removed from cart");
   };
+  // toast("Item removed from cart");
  
 
 

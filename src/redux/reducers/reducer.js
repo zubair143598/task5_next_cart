@@ -8,12 +8,11 @@ export const cartreducer = (state = INIT_STATE, action) => {
         ...state,
         carts: [...state.carts, action.payload],
       };
-      case 'REMOVE_FROM_CART':
-        const updatedCart = state.carts.filter((product) => product.id !== action.payload);
-        return {
-          ...state,
-          cart: updatedCart,
-        };
+      case "REMOVE_CART":
+      return {
+        ...state,
+        carts: state.carts.filter((item) => item.id !== action.payload),
+      };
     default:
       return state;
   }
